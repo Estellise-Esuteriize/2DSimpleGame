@@ -1,4 +1,6 @@
-﻿public enum GameState
+﻿
+// ReSharper disable once CheckNamespace
+public enum GameState
 {
     Initializing = 1,
     Start = 2,
@@ -8,3 +10,4 @@
     Reward = 7,
     Restart = 8
 }
+

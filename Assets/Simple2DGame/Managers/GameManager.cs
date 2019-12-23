@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ReSharper disable once CheckNamespace
 public class GameManager : MonoBehaviour
 {
     public int Level;
@@ -9,8 +11,8 @@ public class GameManager : MonoBehaviour
     private GameState _state;
     private GameState State 
     {
-        get { return _state; }
-        set { _state = State; }
+        get => _state;
+        set => _state = State;
     }
 
     private void Awake()
@@ -20,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
-
 }

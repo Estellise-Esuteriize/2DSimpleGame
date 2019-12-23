@@ -8,36 +8,32 @@ using System.Linq;
 using Watcher = System.Diagnostics.Stopwatch;
 using System.Text.RegularExpressions;
 
-public class PoolingManager : SinglePersistentBehaviour
+// ReSharper disable once CheckNamespace
+public class PoolingManager : SinglePersistentBehaviour<PoolingManager>
 {
-    public static PoolingManager Instance;
-
     public List<PoolObjects> objects;
 
-    private IDictionary<string, List<GameObject>> poolObjects = new Dictionary<string, List<GameObject>>();
+    private readonly IDictionary<string, List<GameObject>> poolObjects = new Dictionary<string, List<GameObject>>();
     private IDictionary<string, List<GameObject>> activePoolObjects = new Dictionary<string, List<GameObject>>();
 
-    private Watcher watch;
+    private Watcher _watch;
 
-    protected override Type InstanceType()
+    protected override PoolingManager InstanceType()
     {
-        return typeof(PoolingManager);
+        return this;
     }
 
     protected override void Awake()
     {
         base.Awake();
 
-        Instance = this;
-
-        watch = new Watcher();
+        _watch = new Watcher();
     }
 
     private void Start()
     {
         InitializeObjects();
     }
-
 
     public void Reset()
     {
